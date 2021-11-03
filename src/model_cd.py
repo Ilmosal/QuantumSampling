@@ -19,6 +19,9 @@ class ModelCD(Model):
         self.generator = np.random.default_rng(seed)
 
     def estimate_model(self, dataset):
+        """
+        Estimate the model distribution by cd algorithm.
+        """
         vis_state = np.copy(dataset.get_data())
         hid_state = self.activate_hidden(vis_state)
 
@@ -31,7 +34,13 @@ class ModelCD(Model):
         return vh_cd
 
     def activate_hidden(self, values):
+        """
+        Return sampled hidden units for visible values
+        """
         return sample(sigmoid(np.dot(values, self.weights) + self.hidden))
 
     def activate_visible(self, values):
+        """
+        Return sampled visible units for hidden values
+        """
         return sample(sigmoid(np.dot(values, self.weights.transpose()) + self.visible))

@@ -13,14 +13,11 @@ class Model:
         self.visible = parameters.visible
         self.hidden = parameters.hidden
 
-    def estimate_model(self):
-        raise Exception("This model class cannot be used to estimate model distribution!!")
-
 class RBMParameters:
     """
     Base class for model parameters
     """
     def __init__(self, visible_size, hidden_size, generator):
-        self.weights = generator.normal(0.2, 0.5, [visible_size, hidden_size])
+        self.weights = generator.normal(0.0, 0.05, [visible_size, hidden_size]) * 13
         self.visible = generator.normal(0.0, 0.1, visible_size)
         self.hidden = generator.normal(0.0, 0.1, hidden_size)
